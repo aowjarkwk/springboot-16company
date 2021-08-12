@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.faqDao"> 
+
+	<select id="list" resultType="com.study.springboot.dto.faqDto"> 
+		SELECT * FROM company_faq order by faq_idx desc
+	</select>
+	
+	<select id="content" resultType="com.study.springboot.dto.faqDto">
+	   SELECT * FROM company_faq where faq_idx=#{param1}
+	
+    </select>
+     
+
+	
+</mapper>

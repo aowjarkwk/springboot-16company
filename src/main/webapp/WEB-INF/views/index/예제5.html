@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>종합 웹 실습</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <style>
+        /* 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5a5a5a;
+        }
+
+        a:link {
+            /* text-decoration: none; */
+            color: #5a5a5a;
+        }
+
+        a:hover {
+            /* text-decoration: none; */
+            color: #5a5a5a;
+        }
+
+        /* top 시작 */
+        .top {
+            width: 100%;
+            height: 30px;
+            color: #777777;
+            font-size: 12px;
+            font-weight: normal;
+            text-align: right;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .topMenu {
+            width: 90%;
+            text-align: right;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+
+        .topMenu span {
+            padding: 5px;
+        }
+
+        .topMenu a {
+            margin-bottom: 0px;
+            text-decoration: none;
+            color: #777777;
+        }
+
+        .topMenu .home {
+            background-image: url(./home01.png);
+            background-repeat: no-repeat;
+            background-position: -10% -50%;
+            /* padding-bottom: 0px 0px 10px 0px; */
+        }
+
+        .home>a {
+            padding: 0px 0px 0px 22px;
+        }
+
+        /* 화살표 제거 */
+        .dropdown-toggle::after {
+            border: none;
+        }
+
+        /* 마우스오버시 팝업 */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            /* 팝업메뉴가 닫히지 않도록 */
+            margin-top: 0;
+        }
+
+        /* carousel 시작 */
+        .carousel-item {
+            position: relative;
+        }
+
+        .carousel-caption {
+            width: 80%;
+            position: absolute;
+            margin: 0 auto;
+            left: 10%;
+            top: 30%;
+        }
+
+        .carousel-caption h1 {
+            width: 80%;
+            text-align: left;
+            font-size: 45px;
+            padding-bottom: 10px;
+            animation-delay: 0.3s;
+        }
+
+        .carousel-caption p {
+            width: 80%;
+            text-align: left;
+            font-size: 14px;
+            color: #f6f6f6;
+            padding-bottom: 10px;
+            animation-delay: 0.4s;
+        }
+
+        .carousel-caption .learn-btn {
+            position: absolute;
+            left: 0;
+            width: 130px;
+            height: 32px;
+            background-color: rgb(26, 39, 97);
+            color: white;
+            animation-delay: 0.7s;
+        }
+
+        .carousel-caption .learn-btn:hover {
+            background-color: black;
+        }
+
+        /* carousel 애니메이션 효과 - animation-delay는 바로 위쪽에 */
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .fadeInDown {
+            animation-name: fadeInDown;
+        }
+
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(-50px);
+                -ms-transform: translateY(-50px);
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(50px);
+                -ms-transform: translateY(50px);
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+        }
+
+        .v-mt01 {
+            font-size: 40px;
+            line-height: 40px;
+            padding: 0 0 10px 0;
+        }
+
+        .v-mt02 {
+            font-size: 13px;
+            padding: 0 0 20px 0;
+            text-align: left;
+        }
+
+        .v-st01 {
+            font-size: 40px;
+        }
+
+        .mv-btn {
+            display: inline-block;
+            position: relative;
+            font-size: 13px;
+            text-align: center;
+            padding: 6px 30px 6px 30px;
+            border-radius: 0px;
+            border: 1px solid #002a62;
+            color: #fff;
+            background: #002a62;
+            transition: 0.3s ease;
+        }
+
+        /* 모바일폰 해상도 */
+        @media only screen and (max-width: 767px) {
+            .v-mt01 {
+                font-size: 26px;
+                line-height: 30px;
+                padding: 0 0 15px 0;
+            }
+
+            .v-mt02 {
+                font-size: 7px;
+                padding: 0 0 10px 0;
+                text-align: left;
+            }
+
+            .v-st01 {
+                font-size: 30px;
+            }
+
+            .mv-btn {
+                display: inline-block;
+                position: relative;
+                font-size: 10px;
+                text-align: center;
+                padding: 6px 30px 6px 30px;
+                border-radius: 0px;
+                border: 1px solid #002a62;
+                color: #fff;
+                background: #002a62;
+                transition: 0.3s ease;
+            }
+        }
+
+        /* 태블릿 해상도 */
+        @media screen and (min-width: 768px) and (max-width: 959px) {
+            .v-mt01 {
+                font-size: 32px;
+                line-height: 32px;
+                padding: 0 0 10px 0;
+            }
+
+            .v-mt02 {
+                font-size: 12px;
+                padding: 0 0 20px 0;
+                text-align: left;
+            }
+
+            .v-st01 {
+                font-size: 32px;
+            }
+
+            .mv-btn {
+                display: inline-block;
+                position: relative;
+                font-size: 10px;
+                text-align: center;
+                padding: 6px 30px 6px 30px;
+                border-radius: 0px;
+                border: 1px solid #002a62;
+                color: #fff;
+                background: #002a62;
+                transition: 0.3s ease;
+            }
+        }
+
+        /* 섹션1 시작 */
+        .section1 {
+            text-align: center;
+            margin: 0 131px 0 131px;
+            padding: 170px 15px 170px 15px;
+        }
+
+        .section1 p {
+            padding: 15px 0 15px 0;
+        }
+
+        .learn-btn {
+            width: 160px;
+            height: 35px;
+            border: 1px solid rgba(117, 115, 115, 0.5);
+            transition: 0.5s ease;
+        }
+
+        .learn-btn:hover {
+            color: white;
+            background-color: rgb(26, 39, 97);
+            border: 0px;
+        }
+
+        /* 섹션2 시작 */
+        .product {
+            width: 100%;
+            height: 802px;
+            padding: 90px 0 100px 0;
+            background-color: #f6f6f6;
+        }
+
+        .product h1,
+        p {
+            text-align: center;
+        }
+
+        #pdAllWrap {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .pd-wrap-big {
+            width: 100%;
+            flex: 1 45%;
+            position: relative;
+        }
+
+        .pd-wrap {
+            flex: 1 45%;
+            position: relative;
+        }
+
+        .pd-wrap-big-2nd {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 10px;
+        }
+
+        .pd-img-big img {
+            width: 100%;
+        }
+
+        .pd-img img {
+            width: 100%;
+        }
+
+        .pd-title {
+            /* display: none; */
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            top: 20px;
+            left: 0px;
+            margin-top: -20px;
+            opacity: 0;
+            transition: 1s ease;
+            background-color: rgb(19, 18, 18);
+            height: 100%;
+            width: 100%;
+        }
+
+        .pd-title-big {
+            position: absolute;
+            top: 20px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: 1s ease;
+            background-color: rgb(19, 18, 18);
+        }
+
+        .pd-title h3 {
+            margin-top: 100px;
+        }
+
+        .pd-title-big h3 {
+            margin-top: 250px;
+        }
+
+        .pd-title .pd-btn {
+            position: absolute;
+            top: 52%;
+            left: 32%;
+            width: 80px;
+            height: 30px;
+            border: 1px solid white;
+            background-color: rgb(19, 18, 18);
+            color: white;
+        }
+
+        .pd-title-big .pd-btn-big {
+            position: absolute;
+            top: 55%;
+            left: 41%;
+            width: 80px;
+            height: 30px;
+            border: 1px solid white;
+            background-color: rgb(19, 18, 18);
+            color: white;
+        }
+
+        .pd-wrap-big:hover .pd-title {
+            top: 20px;
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .pd-wrap:hover .pd-title {
+            top: 20px;
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+        }
+
+        /* 모바일폰 해상도 */
+        @media only screen and (max-width: 767px) {
+            .pd-wrap-big {
+                flex: 1 100%;
+            }
+        }
+
+        /* 태블릿 해상도 */
+        @media screen and (min-width: 768px) and (max-width: 959px) {
+            .pd-wrap-big {
+                flex: 1 100%;
+            }
+        }
+
+        .back-to-top {
+            /* cursor: pointer; */
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            display: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section1">
+        <div class="v-mt01">THE SPECIAL DESIGN GROUP</div>
+        <div class="v-mt02">파이브스톤은 다양한 환경에 적응하며 경쟁하기 위해 디자인 역량과 기술력에 집중하고 <br>
+            고객과의 친밀한 소통과 협력을 통해 최고의 품질을 제공하고 있습니다.</div>
+        <a href="http://127.0.0.1:5501/ex05_homepage_make/company/company01.html"><button class="learn-btn mv-btn">Learn
+                More</button></a>
+    </div>
+    <div class="product">
+        <h1>PRODUCT</h1>
+        <p>파이브스톤은 정직과 신뢰, 디자인으로 고객과 함께 합니다.</p>
+        <div id="pdAllWrap">
+            <div class="pd-wrap-big">
+                <a href="#">
+                    <div class="pd-img-big"><img src="./m-op01.jpg" alt=""></div>
+                    <div class="pd-title pd-title-big">
+                        <h3>DFSA 101</h3>
+                        <button class="pd-btn-big">view</button>
+                    </div>
+                </a>
+            </div>
+            <div class="pd-wrap-big pd-wrap-big-2nd">
+                <div class="pd-wrap">
+                    <a href="#">
+                        <div class="pd-img"><img src="./m-op02.jpg" alt="" style="width: 100%;"></div>
+                        <div class="pd-title">
+                            <h3>DFSA 101</h3>
+                            <button class="pd-btn-big">view</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="pd-wrap">
+                    <a href="#">
+                        <div class="pd-img"><img src="./m-op04.jpg" alt="" style="width: 100%;"></div>
+                        <div class="pd-title">
+                            <h3>SAFE 102</h3>
+                            <button class="pd-btn">view</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="pd-wrap">
+                    <a href="#">
+                        <div class="pd-img"><img src="./m-op03.jpg" alt="" style="width: 100%;"></div>
+                        <div class="pd-title">
+                            <h3>ULQV 104</h3>
+                            <button class="pd-btn">view</button>
+                        </div>
+                    </a>
+                </div>
+                <div class="pd-wrap">
+                    <a href="#">
+                        <div class="pd-img"><img src="./m-op05.jpg" alt="" style="width: 100%;"></div>
+                        <div class="pd-title">
+                            <h3>XPYB 103</h3>
+                            <button class="pd-btn">view</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 위로가기 버튼 -->
+    <a id="back-to-top" href="#" class="back-to-top" role="button" title="" data-toggle="tooltip" data-placement="left"
+        data-original-title="" style="display: block;">
+        <img src="http://bdmp-004.cafe24.com/bizdemo99969/img/common/icon-top.png">
+    </a>
+    <script>
+        // 캐러셀 기동
+        $('.carousel').carousel({
+            interval: 3000, //기본 5초 
+            keyboard: true,
+            pause: 'hover',
+            slide: false,
+            wrap: true,
+            touch: true
+        })
+        // back to top 기능
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    console.log('fadeIn');
+                    $('#back-to-top').fadeIn();
+                } else {
+                    console.log('fadeOut');
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                console.log('click');
+                $('#back-to-top').tooltip('hide');
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 500);
+                return false;
+            });
+            $('#back-to-top').tooltip('show');
+        });
+    </script>
+</body>
+
+</html>

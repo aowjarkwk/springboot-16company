@@ -1,0 +1,461 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+
+<head>
+<script>
+	/* ajax 사용 용도 : 화면갱신(redirect,reload)없이 서버와 통신 가능 */
+	/*                  부분화면 갱신 예)실시간 검색어,실시간 날씨  */
+		function idCheck(){
+		
+			var member_id = $('#member_id').val();
+			
+			$.ajax({
+				url: 'idCheck?member_id='+member_id,
+				type: 'get',
+				success: function(data){
+					console.log("1:중복됨, 0:중복안됨 data:"+data);
+					if(data == 1){
+						//아이디 중복됨
+						alert('아이디가 중복됨.');
+					}else{
+						//아이디 중복 안됨.
+						alert('사용할 수 있는 아이디입니다.');
+					}
+				},
+				error: function(){
+					alert('통신 실패.');
+				}
+					
+		});
+		}
+	</script>
+<script>
+	 function checkValue(){
+		if(!document.join.member_id.value){//empty:null,길이 0
+			alert("아이디를 입력해주세요");
+			document.getElementById('member_id').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}		
+		if(!document.join.member_pw.value){//empty:null,길이 0
+			alert("비밀번호를 입력해주세요");
+			document.getElementById('member_pw').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}
+		if(!document.join.member_name.value){//empty:null,길이 0
+			alert("이름을 입력해주세요");
+			document.getElementById('member_name').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}	if(!document.join.member_email.value){//empty:null,길이 0
+			alert("이메일을 입력해주세요");
+			document.getElementById('member_email').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}	if(!document.join.member_email_receive.value){//empty:null,길이 0
+			alert("이메일수신여부를 체크해주세요");
+			document.getElementById('member_email_receive').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}	if(!document.join.member_pw_answer.value){//empty:null,길이 0
+			alert("비밀번호 찾기 답을 입력해주세요");
+			document.getElementById('member_pw_answer').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}	if(!document.join.member_gender.value){//empty:null,길이 0
+			alert("성별을 선택해주세요");
+			document.getElementById('member_gender').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}if(!document.join.member_birth_date.value){//empty:null,길이 0
+			alert("생일을 입력해주세요");
+			document.getElementById('member_birth_date').focus();
+			return false; //false: submit 전송이 안됨. true: submit전송이 됨.
+		}
+		 
+		
+		
+		
+		
+		
+		}
+		
+		
+		
+	
+</script>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        .wrap {
+            width: 1400px;
+            margin: 0 auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+        }
+
+        .topbar img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-left: 10px;
+        }
+
+        .topbar a {
+            text-decoration: none;
+            color: gray;
+            margin: 0 10px;
+        }
+
+        .navbar-collapse {
+            display: flex;
+            justify-content: flex-end;
+
+
+        }
+
+        .section1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background-image: url("sub-visual06.jpg");
+            background-size: cover;
+            color: #FFFFFF;
+            height: 300px;
+        }
+
+        .section1 h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1 100%;
+        }
+
+        .section1 a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 6px;
+
+
+        }
+
+        .section2 {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+        }
+
+        .section2 h2 {
+            flex: 1 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .section2 p {
+            flex: 1 100%;
+            display: flex;
+            justify-content: center;
+            color: #999999;
+        }
+
+        .section3 {
+            border: 1px solid #b2b2b2;
+            padding: 20px;
+        }
+
+        .section4 {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            background-color: gray;
+        }
+
+        .section4 h4 {
+            flex: 1 100%;
+            display: flex;
+
+        }
+
+        th {
+            text-align: center;
+            width: 160px;
+            height: 50px;
+            background-color: #f7f7f7;
+
+        }
+
+        td {
+            width: 1044px;
+        }
+        input{
+            margin-left: 5px;
+        }
+        .select{
+            margin-left: 5px;
+        }
+
+        .footer {
+
+            width: 1400px;
+            background-color: #333333;
+            display: block;
+            flex-flow: column;
+            display: flex;
+            justify-content: center;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .foot {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            color: #999999;
+        }
+
+        .footNav {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .footNav a {
+            margin: 0px 10px;
+            color: #EEEEEE;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .icons img {
+            margin: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+
+           <div class="wrap">
+        <div class="topbar" id="topbar">
+            <img src="home01.png" alt="">
+            <img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
+        </div>
+          <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index"><img src="/index/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">회사소개</a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="company">회사개요</a></li>
+                                  <li><a class="dropdown-item" href="#">CEO 인사말</a></li>
+                                  <li><a class="dropdown-item" href="map">오시는길</a></li>
+                                  
+                              </li>
+                            
+                        </li>
+                        </ul>
+                        <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">사업분야</a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="buisness">사업분야01</a></li>
+                                  <li><a class="dropdown-item" href="#">사업분야02</a></li>
+                                  <li><a class="dropdown-item" href="#">사업분야03</a></li>
+                                  <li><a class="dropdown-item" href="#">사업분야04</a></li>
+                                </ul>
+                              </li>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">제품안내</a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="product">제품안내01</a></li>
+                                  <li><a class="dropdown-item" href="#">제품안내02</a></li>
+                                  <li><a class="dropdown-item" href="#">제품안내03</a></li>
+                                  <li><a class="dropdown-item" href="#">제품안내04</a></li>
+                                </ul>
+                              </li>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">커뮤니티</a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="community">공지사항</a></li>
+                                  <li><a class="dropdown-item" href="#">홍보자료</a></li>
+                                  <li><a class="dropdown-item" href="#">채용안내</a></li>
+                                  
+                                </ul>
+                              </li>
+                            
+                        <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">고객지원</a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="one2one">1:1문의</a></li>
+                                  <li><a class="dropdown-item" href="qna">묻고답하기</a></li>
+                                  <li><a class="dropdown-item" href="faq">FAQ</a></li>
+                                  
+                                </ul>
+                              </li>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="section1">
+            <h1>MEMBER</h1>
+            <a href=""><img src="home01.png" alt=""></a>
+            >회원가입
+        </div>
+        <div class="section2">
+            <h2>회원가입</h2>
+            <p>The design and maintenance are excellent.</p>
+        </div>
+        <div class="section3">
+            <h3>OOO사이트에 오신 것을 환영합니다.</h3>
+            <h5>-이름과 이메일을 입력해 주시면 가입여부를 확인 후 회원가입 절차가 이루어집니다.</h5>
+        </div>
+        <div class="top-icon" style="position:fixed; bottom:5px; right:5px;"><a href="#topbar"><img src="icon-top.png"
+                    alt=""></a></div>
+        <div class="section4">
+            <h4>회원가입을 위해서 아래의 양식에 있는 내용을 입력해 주셔야 합니다.</h4>
+            <p>-이름과 이메일을 입력해 주시면 가입여부를 확인 후 회원가입 절차가 이루어집니다.</p>
+        </div>
+        <div class="section5">
+            <div class="table">
+            <form action="joinAction" method="post" name="join" onsubmit="return checkValue();">
+                <table>
+                    <tr>
+                        <div class="tableinput">
+                            <th>아이디 </th>                                                                                       
+                            <td><input type="text" name="member_id" id="member_id"> <img src="btn_iddupl.gif" alt="">(영문 소문자, 숫자4~16자)  <a href="javascript:idCheck()">아이디 중복확인</a><br></button><br>  </form> <br><br></td>
+                           
+                        </div>
+                  
+
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>비밀번호</th>
+                            <td><input type="password" name="member_pw"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>비밀번호확인</th>
+                            <td><input type="text"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>이름</th>
+                            <td><input type="text" name="member_name" id=""></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>이메일</th>
+                            <td><input type="eamil" name="member_email"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>이메일 수신여부</th>
+                            <td><input type="radio" name="member_email_receive" value="1"><label for="">수신</label> <input type="radio" name="member_email_receive"value="0"><label
+                                    for="">수신안함</label></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>비밀번호 확인시 질문</th>
+                            <td><select id="" name="member_pw_question">
+                            <option value="1" >일</option>
+                            <option value="2">이</option>
+                            
+                            </select></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>비밀번호 확인시 답변</th>
+                            <td><input type="text" name="member_pw_answer"></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="tableinput">
+                            <th>성별</th>
+                            <td><input type="radio" name="member_gender" value="male"><label for="">남자</label><input type="radio" name="member_gender" value="female"><label
+                                    for="">여자</label></td>
+                        </div>
+                    </tr>
+                    <tr>
+
+                        <th>생년월일</th>
+                        <td><input type="date" name ="member_birth_date"></td>
+                    </tr>
+               
+                </table>
+                     <input type="submit" value="회원가입">
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footNav">
+                <a href="" class="hide">회사소개</a>
+                <a href="">개인정보보호정책</a>
+                <a href="">이메일무단수집거부</a>
+                <a href="" class="hide">묻고답하기</a>
+                <a href="" class="hide">오시는길</a>
+            </div>
+
+            <p class="foot">회사 : 파이브스톤, 주소 : 경기도 고양시 삼송로 193번길 28-3 하준빌딩 401호, 대표 : 김성용,
+            </p>
+            <p class="foot">고객지원 : 010-2709-0828, FAX : 070-777-5555, EMAIL : fivestone55@daum.net, 사업자등록번호 :
+                780-42-00047,
+                통신판매업 : 제2015-경기-00974호
+            </p>
+            <p class="foot">COPYRIGHT(C) 2020 FIVESTONE. ALL RIGHT RESERVED.
+            </p>
+            <div class="icons">
+                <img src="mf-icon01.png" alt="">
+                <img src="mf-icon02.png" alt="">
+                <img src="mf-icon03.png" alt="">
+                <img src="mf-icon04.png" alt="">
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+</body>
+
+</html>
