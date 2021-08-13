@@ -1736,7 +1736,7 @@
                 </a> 
                 </div>
                 <div class="map hover">
-                    <a href="\ex05\member\map.html">
+                    <a href="map">
                     <img src="m-os03.png" alt="">
                     <h5>오시는길</h5>
                     <p>당사의 약도 및 연락처를 보실 수 있습니다.</p>

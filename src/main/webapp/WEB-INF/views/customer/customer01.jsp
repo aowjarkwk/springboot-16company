@@ -154,7 +154,12 @@
             padding-bottom: 50px;
         }
         .btn1{
+        margin-top:30px;
             margin-right: 10px;
+        }
+        .btn2{
+        margin-bottom:20px;
+        margin-right:10px;
         }
 .footer {
 
@@ -273,13 +278,46 @@ margin: 5px;
     </style>
 </head>
 <body>
-    <div class="wrap">
+     <div class="wrap">
+
         <div class="topbar" id="topbar">
-            <img src="home01.png" alt="">
-            <img src="home01.png" alt="">
+		<%
+		String member_id = (String)session.getAttribute("member_id");
+		if( member_id == null){
+			//로그아웃상태
+	%>
+			<img src="home01.png" alt="">
             <a href="index">HOME</a>
             <a href="login">LOGIN</a>
             <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+	
+		}
+		else{
+			if(member_id.length()==0){
+				//로그아웃상태
+	%>
+				<img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+			}else{
+				//로그인상태
+	%>
+					
+				 <img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <%= member_id%>님 환영합니다!
+            <a href="logoutAction"> 로그아웃</a>
+            <a href="">CONTACT US</a>
+	<% 
+				
+			}
+		}
+	%>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
             <div class="container-fluid">
@@ -369,11 +407,11 @@ margin: 5px;
                         고객지원
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="\ex05\company\company01.html">회사소개</a></li>
-                        <li><a class="dropdown-item" href="\ex05\buisness\buisness01.html">사업분야</a></li>
-                        <li><a class="dropdown-item" href="\ex05\product\product01.html">제품안내</a></li>
-                        <li><a class="dropdown-item" href="\ex05\community\community01.html">커뮤니티</a></li>
-                        <li><a class="dropdown-item" href="\ex05\customer\customer01.html">고객지원</a></li>
+                     <li><a class="dropdown-item" href="company">회사소개</a></li>
+                        <li><a class="dropdown-item" href="buisness">사업분야</a></li>
+                        <li><a class="dropdown-item" href="product">제품안내</a></li>
+                        <li><a class="dropdown-item" href=community>커뮤니티</a></li>
+                        <li><a class="dropdown-item" href="one2one">고객지원</a></li>
                     </ul>
                 </div>
             </div>
@@ -384,9 +422,9 @@ margin: 5px;
                         1:1문의
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="\ex05\customer\customer01.html">1:1문의</a></li>
-                        <li><a class="dropdown-item" href="\ex05\customer\customer02.html">묻고답하기</a></li>
-                        <li><a class="dropdown-item" href="\ex05\customer\customer03.html">FAQ</a></li>
+                        <li><a class="dropdown-item" href="one2one">1:1문의</a></li>
+                        <li><a class="dropdown-item" href="qna">묻고답하기</a></li>
+                        <li><a class="dropdown-item" href="faq">FAQ</a></li>
                         
     
                     </ul>
@@ -444,12 +482,12 @@ margin: 5px;
                         </td>
                     </tr>
                 </table>
-                <input type="submit" value="제출">
+                 <input type="image" src="btn_confirm2.gif" alt="" class="btn1">
+           		<a href="#"><img src="btn_cancel.gif" alt="" class="btn2"></a>
                 </form>
             </div>
             <div class="btns">
-            <img src="btn_confirm.gif" alt="" class="btn1">
-            <img src="btn_cancel.gif" alt="" class="btn2">
+           
         </div>
     <div class="top-icon" style="position:fixed; bottom:5px; right:5px;"><a href="#topbar"><img src="icon-top.png"
         alt=""></a></div>

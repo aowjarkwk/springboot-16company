@@ -266,17 +266,50 @@
 </head>
 
 <body>
-    <div class="wrap">
+     <div class="wrap">
+
         <div class="topbar" id="topbar">
-            <img src="home01.png" alt="">
-            <a href="\ex05\index.html">HOME</a>
-            <a href="\ex05\member\login.html">LOGIN</a>
-            <a href="\ex05\member\join.html">JOIN</a>
+		<%
+		String member_id = (String)session.getAttribute("member_id");
+		if( member_id == null){
+			//로그아웃상태
+	%>
+			<img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
             <a href="">CONTACT US</a>
+	<% 
+	
+		}
+		else{
+			if(member_id.length()==0){
+				//로그아웃상태
+	%>
+				<img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+			}else{
+				//로그인상태
+	%>
+					
+				 <img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <%= member_id%>님 환영합니다!
+            <a href="logoutAction"> 로그아웃</a>
+            <a href="">CONTACT US</a>
+	<% 
+				
+			}
+		}
+	%>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
+     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="\ex05\index.html"><img src="logo.png" alt=""></a>
+                <a class="navbar-brand" href="index"><img src="/index/logo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -287,9 +320,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">회사소개</a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="\ex05\company\company01.html">회사개요</a></li>
+                                  <li><a class="dropdown-item" href="company">회사개요</a></li>
                                   <li><a class="dropdown-item" href="#">CEO 인사말</a></li>
-                                  <li><a class="dropdown-item" href="\ex05\member\map.html">오시는길</a></li>
+                                  <li><a class="dropdown-item" href="map">오시는길</a></li>
                                   
                               </li>
                             
@@ -299,7 +332,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">사업분야</a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="\ex05\buisness\buisness01.html">사업분야01</a></li>
+                                  <li><a class="dropdown-item" href="buisness">사업분야01</a></li>
                                   <li><a class="dropdown-item" href="#">사업분야02</a></li>
                                   <li><a class="dropdown-item" href="#">사업분야03</a></li>
                                   <li><a class="dropdown-item" href="#">사업분야04</a></li>
@@ -311,7 +344,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">제품안내</a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="\ex05\product\product01.html">제품안내01</a></li>
+                                  <li><a class="dropdown-item" href="product">제품안내01</a></li>
                                   <li><a class="dropdown-item" href="#">제품안내02</a></li>
                                   <li><a class="dropdown-item" href="#">제품안내03</a></li>
                                   <li><a class="dropdown-item" href="#">제품안내04</a></li>
@@ -323,7 +356,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">커뮤니티</a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="\ex05\community\community01.html">공지사항</a></li>
+                                  <li><a class="dropdown-item" href="community">공지사항</a></li>
                                   <li><a class="dropdown-item" href="#">홍보자료</a></li>
                                   <li><a class="dropdown-item" href="#">채용안내</a></li>
                                   
@@ -334,9 +367,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">고객지원</a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="\ex05\customer\customer01.html">1:1문의</a></li>
-                                  <li><a class="dropdown-item" href="\ex05\customer\customer02.html">묻고답하기</a></li>
-                                  <li><a class="dropdown-item" href="\ex05\customer\customer03.html">FAQ</a></li>
+                                  <li><a class="dropdown-item" href="one2one">1:1문의</a></li>
+                                  <li><a class="dropdown-item" href="qna">묻고답하기</a></li>
+                                  <li><a class="dropdown-item" href="faq">FAQ</a></li>
                                   
                                 </ul>
                               </li>
@@ -363,11 +396,11 @@
                     회사소개
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="\ex05\company\company01.html">회사소개</a></li>
-                    <li><a class="dropdown-item" href="\ex05\buisness\buisness01.html">사업분야</a></li>
-                    <li><a class="dropdown-item" href="\ex05\product\product01.html">제품안내</a></li>
-                    <li><a class="dropdown-item" href="\ex05\community\community01.html">커뮤니티</a></li>
-                    <li><a class="dropdown-item" href="\ex05\customer\customer01.html">고객지원</a></li>
+                 <li><a class="dropdown-item" href="company">회사소개</a></li>
+                        <li><a class="dropdown-item" href="buisness">사업분야</a></li>
+                        <li><a class="dropdown-item" href="product">제품안내</a></li>
+                        <li><a class="dropdown-item" href=community>커뮤니티</a></li>
+                        <li><a class="dropdown-item" href="one2one">고객지원</a></li>
                 </ul>
             </div>
         </div>
@@ -378,9 +411,9 @@
                     오시는길
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">회사개요</a></li>
+                    <li><a class="dropdown-item" href="company">회사개요</a></li>
                     <li><a class="dropdown-item" href="#">CEO인사말</a></li>
-                    <li><a class="dropdown-item" href="#">오시는길</a></li>
+                    <li><a class="dropdown-item" href="map">오시는길</a></li>
 
                 </ul>
             </div>

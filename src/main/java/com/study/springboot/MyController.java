@@ -119,6 +119,11 @@ public class MyController {
 		model.addAttribute("dto2",qnadao.content(qna_idx));
 		return "customer/qnadetail";
 	}
+	@RequestMapping("qnadetail2")
+	public String qna2(@RequestParam("qna_idx") int qna_inx,Model model) {
+		model.addAttribute("dto2",qnadao.content(qna_inx));
+		return "customer/qnadetail2";
+	}
 	@RequestMapping("update")
 	public String update(@RequestParam ("qna_idx") int qna_idx,
 						@RequestParam ("qna_name") String qna_name,
@@ -250,6 +255,11 @@ public class MyController {
 	public String product() {
 		
 		return "product/product01";
+	}
+	@RequestMapping("map")
+	public String map() {
+		
+		return "member/map";
 	}
 	
 }//end of MyController

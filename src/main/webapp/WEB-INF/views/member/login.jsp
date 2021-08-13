@@ -108,6 +108,8 @@
         }
         .loginbtn{
             margin-top: 10px;
+            height:60px;
+            width:80px;
         }
         .id {
             margin: 10px;
@@ -248,12 +250,45 @@
 
 <body>
       <div class="wrap">
+
         <div class="topbar" id="topbar">
-            <img src="home01.png" alt="">
-            <img src="home01.png" alt="">
+		<%
+		String member_id = (String)session.getAttribute("member_id");
+		if( member_id == null){
+			//로그아웃상태
+	%>
+			<img src="home01.png" alt="">
             <a href="index">HOME</a>
             <a href="login">LOGIN</a>
             <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+	
+		}
+		else{
+			if(member_id.length()==0){
+				//로그아웃상태
+	%>
+				<img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+			}else{
+				//로그인상태
+	%>
+					
+				 <img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <%= member_id%>님 환영합니다!
+            <a href="logoutAction"> 로그아웃</a>
+            <a href="">CONTACT US</a>
+	<% 
+				
+			}
+		}
+	%>
         </div>
          <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
             <div class="container-fluid">
@@ -340,10 +375,12 @@
                 <div class="id"><label for="">&nbsp;&nbsp; 아이디 </label> <input type="text" name="member_id"> <a href="">
                     
                 </a></div>
-                <div class="password"><label for="">비밀번호</label> <input type="password" name="member_pw" id=""></div>
+                <div class="password"><label for="">&nbsp;&nbsp;비밀번호</label> <input type="password" name="member_pw" id=""></div>
 
             </div>
-            <img src="btn_login.gif" alt="" height="60px" class="loginbtn"><input type="submit" value="로그인"></form>
+            <input type="image"" src="btn_login.gif" alt="" height="60px" class="loginbtn" type="submit" ></form>
+           
+
             
         </div>
         <div class=find>

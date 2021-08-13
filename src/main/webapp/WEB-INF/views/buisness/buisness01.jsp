@@ -267,13 +267,46 @@ margin: 5px;
 </style>
 </head>
 <body>
-        <div class="wrap">
+     <div class="wrap">
+
         <div class="topbar" id="topbar">
-            <img src="home01.png" alt="">
-            <img src="home01.png" alt="">
+		<%
+		String member_id = (String)session.getAttribute("member_id");
+		if( member_id == null){
+			//로그아웃상태
+	%>
+			<img src="home01.png" alt="">
             <a href="index">HOME</a>
             <a href="login">LOGIN</a>
             <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+	
+		}
+		else{
+			if(member_id.length()==0){
+				//로그아웃상태
+	%>
+				<img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+			}else{
+				//로그인상태
+	%>
+					
+				 <img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <%= member_id%>님 환영합니다!
+            <a href="logoutAction"> 로그아웃</a>
+            <a href="">CONTACT US</a>
+	<% 
+				
+			}
+		}
+	%>
         </div>
           <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
             <div class="container-fluid">
@@ -364,11 +397,11 @@ margin: 5px;
                         사업분야
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="\ex05\company\company01.html">회사소개</a></li>
-                        <li><a class="dropdown-item" href="\ex05\buisness\buisness01.html">사업분야</a></li>
-                        <li><a class="dropdown-item" href="\ex05\product\product01.html">제품안내</a></li>
-                        <li><a class="dropdown-item" href="\ex05\community\community01.html">커뮤니티</a></li>
-                        <li><a class="dropdown-item" href="\ex05\customer\customer01.html">고객지원</a></li>
+                        <li><a class="dropdown-item" href="company">회사소개</a></li>
+                        <li><a class="dropdown-item" href="buisness">사업분야</a></li>
+                        <li><a class="dropdown-item" href="product">제품안내</a></li>
+                        <li><a class="dropdown-item" href=community>커뮤니티</a></li>
+                        <li><a class="dropdown-item" href="one2one">고객지원</a></li>
                     </ul>
                 </div>
             </div>
@@ -379,7 +412,7 @@ margin: 5px;
                         사업분야01
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="ex05\buisness\buisness01.html">사업분야01</a></li>
+                        <li><a class="dropdown-item" href="buisness">사업분야01</a></li>
                         <li><a class="dropdown-item" href="#">사업분야02</a></li>
                         <li><a class="dropdown-item" href="#">사업분야03</a></li>
                         <li><a class="dropdown-item" href="#">사업분야04</a></li>
@@ -394,7 +427,7 @@ margin: 5px;
             </a>
           
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">제품안내01</a></li>
+                <li><a class="dropdown-item" href="product">제품안내01</a></li>
               <li><a class="dropdown-item" href="#">제품안내02</a></li>
               <li><a class="dropdown-item" href="#">제품안내03</a></li>
               <li><a class="dropdown-item" href="#">제품안내04</a></li>

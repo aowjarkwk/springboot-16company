@@ -227,13 +227,44 @@
 <body>
     <div class="wrap">
 
-           <div class="wrap">
         <div class="topbar" id="topbar">
-            <img src="home01.png" alt="">
-            <img src="home01.png" alt="">
+		<%
+		String member_id = (String)session.getAttribute("member_id");
+		if( member_id == null){
+			//로그아웃상태
+	%>
+			<img src="home01.png" alt="">
             <a href="index">HOME</a>
             <a href="login">LOGIN</a>
             <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+	
+		}
+		else{
+			if(member_id.length()==0){
+				//로그아웃상태
+	%>
+				<img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <a href="login">LOGIN</a>
+            <a href="join">JOIN</a>
+            <a href="">CONTACT US</a>
+	<% 
+			}else{
+				//로그인상태
+	%>
+					
+				 <img src="home01.png" alt="">
+            <a href="index">HOME</a>
+            <%= member_id%>님 환영합니다!
+            <a href="logoutAction"> 로그아웃</a>
+            <a href="">CONTACT US</a>
+	<% 
+				
+			}
+		}
+	%>
         </div>
           <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top ">
             <div class="container-fluid">
